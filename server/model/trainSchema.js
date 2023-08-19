@@ -59,5 +59,5 @@ const trainSchema = new mongoose.Schema({
 })
 
 
-const trainRegister = new mongoose.model("trainRegister",trainSchema)
+const trainRegister = new mongoose.model("trainRegister",trainRegister)
 module.exports = trainRegister//Register is the collection name

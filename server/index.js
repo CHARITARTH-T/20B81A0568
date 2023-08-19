@@ -85,7 +85,7 @@ app.post("/auth",async(req,res)=>{
                 const token = await isUserExist.generateAuthToken()//we are now generating auth token that is in userSchema
                 //console.log("token",token)
                 res.cookie("jwtoken",token,{
-                    maxAge:1682629264,//token is active for 2592000000 millisec ie 30 days after that he will be logged out expires is not working please take a note
+                    maxAge:1682629264,//token is active for  1682629264 millisec ie 30 days after that he will be logged out expires is not working please take a note
                     httpOnly:true
                 }).status(200).end()
                 // res.status(200).json("user sign in successfully")
@@ -114,7 +114,7 @@ app.post("/auth",async(req,res)=>{
         try {
             const trains = await trainRegister.find(); // Retrieve all documents from the trainRegister collection
         
-            res.json(trains); // Send the retrieved documents as a JSON response
+            res.status(200); // Send the retrieved documents as a JSON response
           } catch (error) {
             res.status(500).json({ error: "Internal Server Error" });
           }
@@ -132,7 +132,7 @@ app.post("/auth",async(req,res)=>{
             console.log("train already exists")
             return res.status(422).json("email already exists")
         }
-        const registerTrain  =  new trainRegister({trainName,trainNumber,departureTime,seatsAvailable,price,delayedBy})
+        const registerTrain  =  new TrainRegister({trainName,trainNumber,departureTime,seatsAvailable,price,delayedBy})
         //here before saving hashing of the password is going to take place see in userShema using bcrypt
         
         const registered = await registerTrain.save();
